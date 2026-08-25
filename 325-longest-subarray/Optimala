@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int k) {
+        int n = nums.size();
+        int left , right = 0;
+        int sum = 0;
+        int maxlen = 0;
+        while ( right < n){
+            while ( left <= right && k < sum){//until left is less than right and sum has become greater than k 
+            //decrease sum and move left pointer
+                sum -= nums[left];
+                left++;
+            }
+            //if sum is equal to k then to find lenth of current vec and take max with previous vector
+            if(sum == k){
+                maxlen = max(maxlen, right-left+1)
+            }
+            //if right is less than n then increase sum
+            if (right < n){
+                sum += nums[right];
+            }
+        }
+        return maxlen;
+    }
+}; 
