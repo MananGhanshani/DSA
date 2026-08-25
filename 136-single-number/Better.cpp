@@ -9,10 +9,14 @@ public:
             map[nums[i]]++;
         }
 
-        for ( int i = 0; i < n; i++){
+        for /* ( int i = 0; i < n; i++){
             if (map[nums[i]] == 1){
                 return nums[i];
-            }
+            } */
+            ( auto it : map){
+                if ( it.first == 1){
+                    return it.second;
+                }
         }
         return -1;
     }
