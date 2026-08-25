@@ -1,14 +1,19 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-    int xor1 = 0;
-    int xor2 = 0;
-    int n = nums.size() ;
-
-    for (int i = 0; i < n ; i++){
-        xor2 = xor2 ^ nums[i];
-        xor1 = xor1 ^ (i+1);
-    }   
-    return xor1 ^ xor2;
+        int n = nums.size();
+        for ( int i = 0; i < n+1 ; i++){//like i =0 
+            int flag = 0;
+            for( int j = 0; j < n ; j++){//now search in array for 0 with help of j 
+                if(nums[j] == i){
+                    flag = 1;
+                    break; //quit right after finding it stops at that i 
+                }  
+            }
+            if (flag == 0){
+                return i;
+            }
+        }
+    return -1;
     }
 };
