@@ -2,18 +2,16 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
-        for ( int i = 0; i < n+1 ; i++){//like i =0 
-            int flag = 0;
-            for( int j = 0; j < n ; j++){//now search in array for 0 with help of j 
-                if(nums[j] == i){
-                    flag = 1;
-                    break; //quit right after finding it stops at that i 
-                }  
-            }
-            if (flag == 0){
+        unordered_map<int,int> hash;
+        //map provides 0 as an intital value
+        for(int i = 0; i < n; i++){
+            hash[nums[i]] = 1;
+        }
+        for(int i = 0; i < n; i++){
+            if(hash[i] == 0){
                 return i;
             }
         }
-    return -1;
+        return n;
     }
 };
