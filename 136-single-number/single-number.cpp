@@ -2,16 +2,16 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int n = nums.size();
-        for (int i = 0 ; i < n ; i++){
-            int num = nums[i];
-            int cnt = 0;
-            for ( int j = 0; j < n ; j++){
-                if (num == nums[j]){
-                    cnt++;
-                }
-            }
-            if ( cnt == 1){
-                return num;
+        unordered_map<int,int> map;
+
+        for ( int i = 0; i < n; i++ ){
+            //increases value associated by key i 
+            map[nums[i]]++;
+        }
+
+        for ( int i = 0; i < n; i++){
+            if (map[nums[i]] == 1){
+                return nums[i];
             }
         }
         return -1;
