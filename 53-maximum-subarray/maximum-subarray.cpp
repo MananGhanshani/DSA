@@ -1,26 +1,23 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        long long sum = 0;
-        long long maxi = LONG_MIN;
         int n = nums.size();
+        int maxi = INT_MIN;
+        int sum = 0;
         int start = 0;
-        int ansStart = -1;
-        int ansEnd = -1;
-
-        for (int i= 0; i < n; i++){
-            if (sum==0){
-                start = i;
-            }
+        int astart = 0, aend = 0;
+        for (int i = 0; i < n; i++){
             sum += nums[i];
-            if(sum>maxi){
+            if ( sum > maxi){
                 maxi = sum;
-                ansStart = start;
-                ansEnd = i;
+                astart = start;
+                aend = i;
+            } 
+            if ( sum < 0){
+                sum =0;
+                start = i + 1;  
             }
-            if (sum<0){
-                sum = 0;
-            }
+            
         }
         return maxi;
     }
