@@ -3,7 +3,7 @@ public:
     int ncr(int r,int e ){
         int ans = 1;
             if (r > 0 && e > 0){
-                ans*= r*ncr(r-1,e-1)/e;
+                ans*= ncr(r,e-1)*(r-e+1)/e;
             }
         return ans;
     }
