@@ -1,16 +1,44 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        unordered_map<int,int> mpp;
-        vector<int> list;
-        for ( int i = 0; i < nums.size(); i++){
-            mpp[nums[i]]++;
-            if (mpp[nums[i]] > nums.size()/3 && 
-            find(list.begin(),list.end(),nums[i]) == list.end()
-            ){
-                list.push_back(nums[i]);
+        int cnt1 = 0 , cnt2 = 0;
+        int el1 , el2;
+        for (int i = 0; i < nums.size() ; i++ ){
+                if (cnt1 == 0 && el2 != nums[i]){
+                cnt1 = 1;
+                el1 = nums[i];
+            }
+            else if (cnt2 == 0 && el1 != nums[i]){
+                cnt2 = 1;
+                el2 = nums[i];
+            }
+            else if(el1 == nums[i]){
+                cnt1++;
+            }
+            else if(el2 == nums[i]){
+                cnt2++;
+            }
+            else{
+                cnt1--;
+                cnt2--;
             }
         }
-        return list;
+        cnt1 = 0;
+        cnt2 = 0;
+        for (int i = 0; i < nums.size(); i++){
+            if(el1 == nums[i]){
+                cnt1++;
+            }
+            if(el2 == nums[i]){
+                cnt2++;
+            }
+        }
+
+        vector<int> ans;
+        if (cnt1 > nums.size() / 3)
+            ans.push_back(el1);
+        if (cnt2 > nums.size() / 3)
+            ans.push_back(el2);
+        return ans;
     }
 };
