@@ -1,20 +1,23 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        int n = nums.size();
-        unordered_map<int,int> mp;
-        int r = -1, m = -1;
+        //112345
+        long long n = nums.size();//6
+        long long sum = 0;
+        long long square = 0;
+        long long ss= (n*(n+1))/2;//6*7)/2 
+        long long sss = (n*(n+1)*(2*n +1))/6;
+
         for ( int x : nums){
-            mp[x]++;
+            sum += x;
+            square += (long long)x* x;
         }
-        for( int i = 1; i <= n; i++){
-            if ( mp[i] == 2){
-                r = i;
-            }
-            else if ( mp[i] == 0){
-                m = i;
-            }
-        }
-        return {r,m};
+
+        long long a = ss - sum;
+        long long b = sss - square;
+        long long c = (b)/a;
+        long long m = (c+a)/2;
+        long long r = (c-a)/2;
+        return {(int)r,(int)m};
     }
 };
