@@ -1,3 +1,4 @@
+//iterative
 int lowerbound(vector<int>& nums, int target){
     int n = nums.size();
     int low = 0; 
@@ -46,4 +47,4 @@ public:
 };
 
 //iterator
-lb = lower_bound(arr.begin(), arr.end(), n ) - arr.begin();
+int lb = lower_bound(arr.begin(), arr.end(), n ) - arr.begin();
