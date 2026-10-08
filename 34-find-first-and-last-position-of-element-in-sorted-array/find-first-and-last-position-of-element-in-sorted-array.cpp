@@ -1,17 +1,43 @@
+int first(vector<int> &arr, int t, int n){
+    int low = 0;
+    int high = n-1;
+    while (low <= high){
+        int mid = (low+high)/2;
+        if (arr[mid] >= t){
+            high = mid-1;
+        }
+        else {
+            low = mid+1;
+        }
+    }
+    if (low < n && arr[low] == t){
+        return low;
+    }
+    return -1;
+}
+int last(vector<int> &arr, int t,int n){
+    int low = 0;
+    int high = n-1;
+    while (low <= high){
+        int mid = (low+high)/2;
+        if (arr[mid] <= t){
+            low = mid+1;
+        }
+        else {
+            high = mid-1;
+        }
+    }
+    if (high >= 0 && arr[high] == t){
+        return high;
+    }
+    return -1;
+}
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int n = nums.size();
-        int first = -1;
-        int last = -1;
-        int lb = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-        int ub = upper_bound(nums.begin(), nums.end(), target) - nums.begin();
-        if (lb < n && nums[lb] == target){
-            first = lb;
-        }
-        if (ub > 0 && nums[ub-1] == target){
-            last = ub-1;
-        }
-        return {first,last};
+        int f = first(nums,target ,n);
+        int l = last(nums,target ,n);
+        return{f,l};
     }
 };
