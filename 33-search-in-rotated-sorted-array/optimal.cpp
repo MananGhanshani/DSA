@@ -33,3 +33,9 @@ public:
         return ans;
     }   
 };
+//find of mid 
+//now find out sorted portion 
+//in that sorted portion find if between those two pointers the target present or not 
+//if present again do bs in that sorted part 
+//if not present do bs in non sorted part
+
